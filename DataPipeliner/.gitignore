@@ -1,0 +1,23 @@
+# Ignore folders
+plugins/
+ollama_data/
+minio-data/
+logs/
+
+# Ignore Python cache and bytecode files
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore VS Code settings
+.vscode/
+
+# Ignore environment files (real secrets)
+.env
+
+# Ignore log files anywhere
+*.log
+
+# OS system files
+.DS_Store
+Thumbs.db
