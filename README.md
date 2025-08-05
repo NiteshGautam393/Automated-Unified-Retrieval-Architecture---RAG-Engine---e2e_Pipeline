@@ -72,25 +72,25 @@ graph TD
 <br>
 
 ## PIPELINE INFRASTRUCTURE:
-- Airflow: Orchestrates ETL via bbc_scraper_etl_pipeline DAG
+- Airflow: Orchestrates ETL via bbc_scraper_etl_pipeline DAG<br>
   ● Includes retry mechanisms and failure-triggered email alerts
-- MinIO: S3-compatible object storage across medallion architecture buckets
+- MinIO: S3-compatible object storage across medallion architecture buckets<br>
   ● Organized into raw, bronze, silver, gold, and chroma layers
-- DuckDB: Lightweight in-process SQL engine for data transformations
+- DuckDB: Lightweight in-process SQL engine for data transformations<br>
   ● Handles fast SQL operations and data quality filtering
-- Delta Lake: ACID-compliant storage for the gold layer
+- Delta Lake: ACID-compliant storage for the gold layer<br>
   ● Supports versioned data and metadata lineage
-- ChromaDB: Persistent vector database for storing semantic embeddings
+- ChromaDB: Persistent vector database for storing semantic embeddings<br>
   ● Handles batch embedding updates and fast similarity search
 
 ## API & RAG: 
-- FastAPI Service: Hosts dual endpoints
-  ● /ask: RAG-based question answering with LLM
+- FastAPI Service: Hosts dual endpoints<br>
+  ● /ask: RAG-based question answering with LLM<br>
   ● /search: Embedding-based similarity search
-- Vector Retrieval: Uses ChromaDB with all-MiniLM-L6-v2 for chunk-level semantic matching
-- LLM Integration: Connects to Ollama's LLaMA3 for answer generation
+- Vector Retrieval: Uses ChromaDB with all-MiniLM-L6-v2 for chunk-level semantic matching<br>
+- LLM Integration: Connects to Ollama's LLaMA3 for answer generation<br>
   ● Supports configurable temperature for response diversity
-- Documentation UI: Swagger UI hosted at root
+- Documentation UI: Swagger UI hosted at root<br>
   ● Includes real-time health check and usage statistics
 - Resilient Design: Supports both local and remote ChromaDB fallback
 
