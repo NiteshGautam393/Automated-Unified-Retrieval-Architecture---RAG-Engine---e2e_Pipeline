@@ -1,20 +1,14 @@
 import os
-# import shutil  <-- REMOVED
 import tempfile
 import asyncio
 import logging
 import time
-# import threading  <-- REMOVED (not used)
 from typing import List, Dict, Any, Optional
 from contextlib import asynccontextmanager
-
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-# from fastapi.staticfiles import StaticFiles  <-- REMOVED
-# from fastapi.responses import FileResponse   <-- REMOVED
 from pydantic import BaseModel
 import uvicorn
-
 import pandas as pd
 from sentence_transformers import SentenceTransformer
 import chromadb
@@ -71,8 +65,6 @@ class HealthResponse(BaseModel):
     model_loaded: bool
     llama_available: bool
     local_chroma_exists: bool
-
-# ... (initialize_chroma, download_chroma_from_minio, and initialize_models functions remain exactly the same) ...
 
 # Try to load ChromaDB from local path first, fallback to MinIO download
 async def initialize_chroma():
@@ -196,9 +188,7 @@ async def lifespan(app: FastAPI):
         pass
 
 # App
-# --- KEY CHANGE HERE ---
-# By setting docs_url="/", we tell FastAPI to serve the Swagger UI at the root URL.
-# The old /docs will no longer exist.
+
 app = FastAPI(
     title="RAG API",
     description="Semantic Search API with Ollama and ChromaDB",
@@ -215,15 +205,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# --- REMOVED ---
-# All the logic for creating a 'static' directory, copying index.html,
-# and mounting StaticFiles has been deleted from here.
 
-# --- REMOVED ---
-# The old @app.get("/") endpoint that served the index.html file has been deleted.
-# FastAPI now handles the "/" route automatically to serve the docs.
-
-# ... (all your other endpoints: /health, /search, /ask, /stats remain exactly the same) ...
 @app.get("/health", response_model=HealthResponse)
 async def health():
     """Health check endpoint"""
